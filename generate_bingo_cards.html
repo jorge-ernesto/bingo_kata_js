@@ -34,6 +34,41 @@
     </nav>
 
     <!-- CONTAINER -->
+    <div class="container">
+        <div class="row justify-content-center mt-3 pt-2">
+            <div class="col-md-12">
+               
+                <div class="card text-center">
+                    <div class="card-header">
+                        Generate Bingo Cards
+                    </div>
+                    <div class="card-body">                        
+
+                        <h5 class="card-title">Bingo card:</h5>
+                        <table class="table table-bordered">   
+                            <tbody>                                                                
+                                <tr id="linea1"></tr>
+                                <tr id="linea2"></tr>
+                                <tr id="linea3"></tr>
+                                <tr id="linea4"></tr>                        
+                                <tr id="linea5"></tr>
+                            </tbody>
+                        </table>                 
+                                                
+                        <hr>
+                        <button id="generate_bingo_cards" class="btn btn-success">Generar Bingo Card</button>
+                        <button id="delete_bingo_cards" class="btn btn-success">Eliminar Bingo Card</button>
+                        </div>
+                    <div class="card-footer text-muted">
+                        Generate Bingo Cards
+                    </div>
+                </div>                
+
+                <?php include 'layout/footer.php'; ?>
+
+            </div>
+        </div>
+    </div>
     <!-- END CONTAINER -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

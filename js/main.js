@@ -55,15 +55,13 @@ $(document).ready(function(){
 
       //RENDERIZAMOS NUMEROS ALEATORIOS EN VISTA      
       var html = "";
-      
       numeros_aleatorios.forEach(function callback(currentValue, index, array) {
          // console.log('currentValue', currentValue)                  
          html += `${currentValue}, `;
       });      
-
       $("#view-numbers").html(html);      
 
-      //RENDERIZAMOS NUMERO ALEATROIO ACTUAL
+      //RENDERIZAMOS NUMERO ALEATORIO ACTUAL
       var numero_aleatorio_actual = JSON.parse(localStorage.getItem('numero_aleatorio_actual'));
       $("#view-number").html(numero_aleatorio_actual);      
    });
@@ -75,9 +73,57 @@ $(document).ready(function(){
    });
    
    $('#generate_bingo_cards').on('click', function(e) {
+      console.log("generate_bingo_cards");
+      var valores = [];
+      var x = 0;
+      
+      //OBTENEMOS 25 NUMEROS ALEATORIOS DEL 1 AL 75 PARA EL BINGO CARD
+      while (x<25) {
+         var num_aleatorio = aleatorio(1,75);
+         if (!in_array(num_aleatorio,valores)) {
+           valores.push(num_aleatorio);
+           x++;
+         }
+      }   
+      localStorage.setItem("bingo_cards", JSON.stringify(valores));
+
+      //RENDERIZAMOS BINGO CARD
+      var linea1 = "";
+      var linea2 = "";
+      var linea3 = "";
+      var linea4 = "";
+      var linea5 = "";
+      valores.forEach(function callback(currentValue, index, array) {
+         if(index >= 0 && index <= 4){
+            linea1 += `<td>${currentValue}</td>`
+         }      
+         if(index >= 5 && index <= 9){
+            linea2 += `<td>${currentValue}</td>`
+         }      
+         if(index >= 10 && index <= 14){
+            linea3 += `<td>${currentValue}</td>`
+         }         
+         if(index >= 15 && index <= 19){
+            linea4 += `<td>${currentValue}</td>`
+         }      
+         if(index >= 20 && index <= 24){
+            linea5 += `<td>${currentValue}</td>`
+         }      
+      });      
+      $("#linea1").html(linea1);  
+      $("#linea2").html(linea2);  
+      $("#linea3").html(linea3);  
+      $("#linea4").html(linea4);  
+      $("#linea5").html(linea5);  
    });
    
    $('#delete_bingo_cards').on('click', function(e) {
+      $("#linea1").html('');  
+      $("#linea2").html('');  
+      $("#linea3").html('');  
+      $("#linea4").html('');  
+      $("#linea5").html(''); 
+      alert("Se elimino bingo card");
    });
 
 });
