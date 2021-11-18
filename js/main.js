@@ -11,7 +11,28 @@ function in_array(needle, haystack) {
    return false;
 }
 
+function getBingoNumbers(numeros_aleatorios){   
+   //LIMPIAMOS VISTA
+   $("#view-numbers").html('');
+
+   //RENDERIZAMOS NUMEROS ALEATORIOS EN VISTA      
+   var html = "";
+   numeros_aleatorios.forEach(function callback(currentValue, index, array) {
+      // console.log('currentValue', currentValue)                  
+      html += `${currentValue}, `;
+   });      
+   $("#view-numbers").html(html);      
+
+   //RENDERIZAMOS NUMERO ALEATORIO ACTUAL
+   var numero_aleatorio_actual = JSON.parse(localStorage.getItem('numero_aleatorio_actual'));
+   $("#view-number").html(numero_aleatorio_actual);    
+}
+
 $(document).ready(function(){
+
+   //FUNCION QUE RENDERIZA LA INFORMACION AL CARGAR LA PAGINA
+   var numeros_aleatorios = JSON.parse(localStorage.getItem('numeros_aleatorios'));      
+   getBingoNumbers(numeros_aleatorios);
 
    $('#calling_bingo_numbers').on('click', function(e) {   
       console.log("*********** Click a calling_bingo_numbers ***********");    
@@ -50,20 +71,8 @@ $(document).ready(function(){
          }  
       }
       
-      //LIMPIAMOS VISTA
-      $("#view-numbers").html('');
-
-      //RENDERIZAMOS NUMEROS ALEATORIOS EN VISTA      
-      var html = "";
-      numeros_aleatorios.forEach(function callback(currentValue, index, array) {
-         // console.log('currentValue', currentValue)                  
-         html += `${currentValue}, `;
-      });      
-      $("#view-numbers").html(html);      
-
-      //RENDERIZAMOS NUMERO ALEATORIO ACTUAL
-      var numero_aleatorio_actual = JSON.parse(localStorage.getItem('numero_aleatorio_actual'));
-      $("#view-number").html(numero_aleatorio_actual);      
+      //RENDERIZAMOS INFORMACION ACTUALIZADA
+      getBingoNumbers(numeros_aleatorios);  
    });
    
    $('#delete_bingo_numbers').on('click', function(e) {
