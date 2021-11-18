@@ -11,21 +11,23 @@ function in_array(needle, haystack) {
    return false;
 }
 
-function getBingoNumbers(numeros_aleatorios){   
-   //LIMPIAMOS VISTA
-   $("#view-numbers").html('');
+function getBingoNumbers(numeros_aleatorios){ 
+   if (numeros_aleatorios !== null) {
+      //LIMPIAMOS VISTA
+      $("#view-numbers").html('');
 
-   //RENDERIZAMOS NUMEROS ALEATORIOS EN VISTA      
-   var html = "";
-   numeros_aleatorios.forEach(function callback(currentValue, index, array) {
-      // console.log('currentValue', currentValue)                  
-      html += `${currentValue}, `;
-   });      
-   $("#view-numbers").html(html);      
+      //RENDERIZAMOS NUMEROS ALEATORIOS EN VISTA      
+      var html = "";
+      numeros_aleatorios.forEach(function callback(currentValue, index, array) {
+         // console.log('currentValue', currentValue)                  
+         html += `${currentValue}, `;
+      });      
+      $("#view-numbers").html(html);      
 
-   //RENDERIZAMOS NUMERO ALEATORIO ACTUAL
-   var numero_aleatorio_actual = JSON.parse(localStorage.getItem('numero_aleatorio_actual'));
-   $("#view-number").html(numero_aleatorio_actual);    
+      //RENDERIZAMOS NUMERO ALEATORIO ACTUAL
+      var numero_aleatorio_actual = JSON.parse(localStorage.getItem('numero_aleatorio_actual'));
+      $("#view-number").html(numero_aleatorio_actual);    
+   }
 }
 
 $(document).ready(function(){
@@ -78,6 +80,7 @@ $(document).ready(function(){
    $('#delete_bingo_numbers').on('click', function(e) {
       localStorage.clear();
       $("#view-numbers").html('');
+      $("#view-number").html('0');
       alert("Se eliminaron numeros");
    });
    
